@@ -29,12 +29,14 @@ class RedditFront:
             raise Exception("Couldn't find a fitting removal reason! Aborting now.")
         self.LOG.info(f"Using the removal reason [{self.removal_reason.title}] for removals")
 
+        self.allowed_to_tweet=os.environ["allowed_to_tweet_username"]
+
         self.test = test
 
     def removeDuplicateTweets(self):
-        for legit_post in self.subreddit.search(f"author:{self.username} title:\"New Tweet from\"", sort='new'):
+        for legit_post in self.subreddit.search(f"author:{self.allowed_to_tweet} title:\"New Tweet from\"", sort='new'):
             logging.info(f"Checking for duplicates of {legit_post.url}")
-            for post in self.subreddit.search(f"url:{legit_post.url} -author:{self.username}", sort='new'):
+            for post in self.subreddit.search(f"url:{legit_post.url} -author:{self.allowed_to_tweet}", sort='new'):
                 logging.info(f"Found duplicate: {post.permalink}")
                 if not self.test:
                     logging.info(f"Found duplicate, removing it.")

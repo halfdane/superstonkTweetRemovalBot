@@ -16,6 +16,7 @@ You have to export the following environment variables:
     export reddit_password="very_secret"
 
     export target_subreddit="Superstonk or a test subreddit"
+    export allowed_to_tweet_username="user who's allowed to post tweets"
 
 Afterwards execute
 

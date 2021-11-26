@@ -15,7 +15,7 @@ def main(argv):
             test = True
 
     redditFront = RedditFront(test=test)
-    for post in redditFront.identifyOwnTweetPosts
+    redditFront.removeDuplicateTweets()
 
 
 if __name__ == "__main__":
